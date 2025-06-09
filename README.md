@@ -91,13 +91,14 @@
 
 ## Example 1: Disclaimer  
 
-<Disclaimer>
+&lt;Disclaimer&gt;
   This documentation will be obsolete before you finish reading it.
-</Disclaimer>
+&lt;/Disclaimer&gt;
 
 ## Example 2: Condition
 
-<Condition if="mac"> On macOS, run: ``` ./setup-mac.sh ``` </Condition> <Condition if="linux"> On Linux, run: ``` ./setup-linux.sh ``` </Condition>
+&lt;Condition if="mac"&gt;
+  On macOS, run:
 
 ## Example 3: Variable
 
@@ -109,9 +110,9 @@ Replace <Variable name="API_BASE_URL" /> with the value your admin failed to giv
 
 1. Create your snippet file. Put the reusable content in its own .mdx file. For example `docs/snippets/warning.mdx`
 
-<Disclaimer>
-  This is a reusable warning. Ignore it at your own risk.
-</Disclaimer>
+&lt;Disclaimer&gt;
+  This disclaimer is reusable. Ignore at your own risk.
+&lt;/Disclaimer&gt;
 
 2. Import and use the snippet
 
