@@ -2,9 +2,7 @@
 
 Les arguments sont utilisés pour transmettre des données d’un projet à un autre. D’un point de vue global, ils ressemblent à des variables, car ils stockent des données de façon dynamique et les transmettent ensuite. Les variables transmettent des données entre activités, tandis que les arguments transmettent des données entre automatisations. Par conséquent, ils permettent de réutiliser certains projets à plusieurs reprises.
 
-Studio prend en charge un grand nombre de types d’arguments, qui coïncident avec les types de variables. Vous pouvez donc créer des arguments de type Generic Value, String, Boolean, Object, Array ou DataTable, et vous pouvez également parcourir les types .Net, comme pour les variables.
-
-De plus, les arguments ont des directions spécifiques (In, Out, In/Out, Property) qui indiquent à l’application où l’information stockée doit être transmise.
+Studio prend en charge un grand nombre de types d’arguments, qui coïncident avec les types de variables. Vous pouvez donc créer des arguments de type Generic Value, String, Boolean, Object, Array ou DataTable, et vous pouvez également parcourir les types .Net, comme pour les variables. De plus, les arguments ont des directions spécifiques (In, Out, In/Out, Property) qui indiquent à l’application où l’information stockée doit être transmise.
 
 S’il existe à la fois une variable et un argument portant le même nom, la variable est toujours prioritaire et utilisée à l’exécution. Passer des arguments In complexes (par exemple, de type System.Data.DataTable) à une activité Invoke Workflow File non isolée agit comme si une référence était passée, ce qui signifie que toute modification de l’objet dans le workflow invoqué modifie également l’objet dans le workflow principal. Les types d’arguments intégrés (par exemple, Boolean) sont toujours passés comme valeurs.
 
