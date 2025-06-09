@@ -1,0 +1,3 @@
+﻿# How to send a message in a Quip thread while including an attachment
+
+Use the  activity to retrieve the Thread ID in the output response. You can also use  with a search by title, to get the thread where you want to send the attachments.Next, use an  activity. In the Thread ID field, use the thread ID retrieved using one of the activities above. The only difference is that Create Chat Room directly outputs the Thread ID, whereas the output of Search Threads is a Threads object, with id listed as an attribute. Next, use the  activity. In the Attachments field, use the Attachment ID retrieved as output from .

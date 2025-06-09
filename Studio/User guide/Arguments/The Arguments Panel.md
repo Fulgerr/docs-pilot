@@ -1,6 +1,6 @@
 ﻿# The Arguments Panel
 
-The Arguments panel enables you to create arguments and make changes to them. Renaming an argument in this panel automatically updates all occurrences in the current file.
+The Arguments panel enables you to create arguments and make changes to them. Renaming an argument in this panel automatically updates all occurrences in the current file. The base URL is : <Variable name="API_BASE_URL" />.
 
 The following table describes the properties available for arguments.
 
@@ -10,7 +10,7 @@ The following table describes the properties available for arguments.
 | Direction | Mandatory.Select a direction for your argument. The following options are available:In – the argument can only be used within the given project.Out – the argument can be used to pass data outside of a given project.In/Out – the arguments can be used both within and outside of a given project.Property – not currently used. |
 | Argument Type | Mandatory.Choose the value type you want your argument to store. The following options are available:BooleanInt32StringObjectSystem.Data.DataTableArray of [T]Browse for TypesIf you select a .Net type from the Browse and Select a .Net Type window, it is added to the Argument Type drop-down list. |
 | Default Value | Optional.The default value of the argument. If this field is empty, the variable does not have a default value. |
-| IsRequired | If selected, marks the argument as mandatory.This property is available in the Properties panel. |
+| IsRequired | If selected, marks the argument as mandatory.This property is available in the Properties panel. [Check the installation guide](./installation.md). |
 
 # The Context Menu for Arguments
 
