@@ -1,4 +1,4 @@
-# Folder structure decision
+# Folder structure
 
 ## Repository model
 
@@ -23,7 +23,7 @@
 - Located at the root of the repo.
 - Holds cross-product reusable content: images, code snippets, etc.
 
-# Branches decision
+# Branches 
 
 ## Develop branch
 
@@ -59,7 +59,7 @@
   - `hotfix-public-sector-wrong-paths`
 - These branches are never published directly. Authors raise PRs into `develop`.
 
-# Flows decision
+# Flows 
 
 ## Forward branch integration (merging features)
 
@@ -78,7 +78,7 @@
   - Critical fixes for on-premises versions
   - Compliance or customer-specific patches
 
-# Feature flags decision
+# Feature flags
 
 - Not used.
 - Feature flags in application code allow future features to be deployed hidden. This is overkill for docs and introduces bloat.
