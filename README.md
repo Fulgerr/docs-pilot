@@ -86,3 +86,35 @@
   - Keep docs changes on a `feat-*` or `hotfix` branch.
   - Do not merge into `develop` or a release branch until the content is publishable.
 - The risk of conflicts increases the further ahead the work is. Merge cautiously.
+
+# MDX components and syntax
+
+## Example 1: Disclaimer  
+
+<Disclaimer>
+  This documentation will be obsolete before you finish reading it.
+</Disclaimer>
+
+## Example 2: Condition
+
+<Condition if="mac"> On macOS, run: ``` ./setup-mac.sh ``` </Condition> <Condition if="linux"> On Linux, run: ``` ./setup-linux.sh ``` </Condition>
+
+## Example 3: Variable
+
+Your API base URL is: <Variable name="API_BASE_URL" />.
+
+Replace <Variable name="API_BASE_URL" /> with the value your admin failed to give you.
+
+## Example 4: Snippets
+
+1. Create your snippet file. Put the reusable content in its own .mdx file. For example `docs/snippets/warning.mdx`
+
+<Disclaimer>
+  This is a reusable warning. Ignore it at your own risk.
+</Disclaimer>
+
+2. Import and use the snippet
+
+In any .mdx file where you want to reuse that content:
+
+`import Warning from '../snippets/warning.mdx'`
