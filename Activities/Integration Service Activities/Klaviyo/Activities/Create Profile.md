@@ -1,0 +1,36 @@
+﻿# Create Profile
+
+# Description
+
+Create a subscriber profile in Klaviyo.
+
+# Untitled Section
+
+# Compatibility
+
+Email - The email of the subscriber profile. This field supports
+              String type input.Phone - The phone of the subscriber profile. This field supports
+              String type input.External ID - The ID used by customers to associate Klaviyo profiles with
+            profiles in an external system, such as a point-of-sale system. This field supports
+              String type input.First name - The first name of the subscriber profile. This field supports
+              String type input.Last name - The last name of the subscriber profile. This field supports
+              String type input.Organization - The company of the subscriber profile. This field supports
+              String type input.
+
+
+
+
+
+
+
+* Title - The title of the subscriber profile. This field supports String type input.
+* Address 1 - The address of the subscriber profile. This field supports String type input.
+* City - The city of the subscriber profile. This field supports String type input.
+* Country - The country of the subscriber profile. This field supports String type input.
+* Property keys - Property keys assigned to the profile. This field supports String type input.
+* Property values - Property values assigned to the profile. This field supports String type input.
+
+
+
+* Profile ID - The new profile's ID. Automatically generated output variable.
+* Profile - Automatically generated output variable.

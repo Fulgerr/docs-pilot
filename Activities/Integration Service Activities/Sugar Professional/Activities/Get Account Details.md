@@ -1,0 +1,24 @@
+﻿# Get Account Details
+
+UiPath.SugarProfessional.IntegrationService.Activities.GetAccountDetails
+
+Retrieves account information from Sugar CRM.
+
+# In the body of the activity
+
+* Account - Type the first 3 characters of the name to select the account from the dropdown or pass custom account ID.
+* Response - The account object is returned.
+
+# Properties
+
+Common
+
+* DisplayName - The display name of the activity. This field supports String type input.
+
+Misc
+
+* Private - If selected, the values of variables and arguments are no longer logged at Verbose level.
+
+Output
+
+* ResponseStatus - The status of the request (success/failure information). Enter a ResponseStatus variable (UiPath.BAF.Models.ResponseStatus). The ResponseStatus object includes three properties that you can use in other activities.Success - Boolean - Specifies whether the API request was successful. ErrorCode - String - The response error if the API request is unsuccessful (Success=False). Message - String - The error message.
