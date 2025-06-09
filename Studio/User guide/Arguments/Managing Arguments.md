@@ -1,36 +1,16 @@
 ﻿# Managing Arguments
 
-Arguments are used to pass data from a project to another. In a global sense, they resemble
-      variables, as they store data dynamically and pass it on. Variables pass data between
-      activities, while arguments pass data between automations. As a result, they enable you to
-      reuse certain projects time and again.
+Arguments are used to pass data from a project to another. In a global sense, they resemble variables, as they store data dynamically and pass it on. Variables pass data between activities, while arguments pass data between automations. As a result, they enable you to reuse certain projects time and again.
 
-Studio supports a large number of argument types, which coincide with the types of variables.
-      Therefore, you can create Generic Value, String, Boolean, Object, Array, or DataTable
-      arguments and you can also browse for .Net types, just as you do in the case of variables.
+Studio supports a large number of argument types, which coincide with the types of variables. Therefore, you can create Generic Value, String, Boolean, Object, Array, or DataTable arguments and you can also browse for .Net types, just as you do in the case of variables.
 
-Additionally, arguments have specific directions (In, Out, In/Out, Property) that tell
-      the application where the information stored in them is supposed to go.
+Additionally, arguments have specific directions (In, Out, In/Out, Property) that tell the application where the information stored in them is supposed to go.
 
-If there are both a variable and
-          an argument with the same name, the variable is always defaulted to and used at
-          runtime.Passing complex In arguments (for
-          example, of type System.Data.DataTable) to an Invoke Workflow File activity that is not isolated acts as if a reference
-          is passed, which means any changes to the object inside the invoked workflow change the
-          object in the main workflow. Built-in argument types (for example, Boolean) are
-          always passed as values.
+If there are both a variable and an argument with the same name, the variable is always defaulted to and used at runtime.Passing complex In arguments (for example, of type System.Data.DataTable) to an Invoke Workflow File activity that is not isolated acts as if a reference is passed, which means any changes to the object inside the invoked workflow change the object in the main workflow. Built-in argument types (for example, Boolean) are always passed as values.
 
-Please take into consideration that if you create an In/Out argument with an In value when
-      used in the Invoke Workflow activity, and then change the value to Out, you may notice
-      that an error is thrown when executing the project. This is because the Invoke Workflow
-      activity did not return the values by reference. Use a Global
-          Handler in your project to get access to the exact values the arguments had
-      inside the invoked workflow.
+Please take into consideration that if you create an In/Out argument with an In value when used in the Invoke Workflow activity, and then change the value to Out, you may notice that an error is thrown when executing the project. This is because the Invoke Workflow activity did not return the values by reference. Use a Global Handler in your project to get access to the exact values the arguments had inside the invoked workflow.
 
-Lastly, these arguments can be used to integrate with other tools in your company, as they
-      are exposed in Orchestrator too. This means that any process you create can now receive input
-      parameters through the Orchestrator API or interface, as well as return an output to all of
-      the aforementioned. More information is available here.
+Lastly, these arguments can be used to integrate with other tools in your company, as they are exposed in Orchestrator too. This means that any process you create can now receive input parameters through the Orchestrator API or interface, as well as return an output to all of the aforementioned. More information is available here.
 
 ## Creating Arguments
 
