@@ -1,0 +1,7 @@
+﻿# Example of Automatic Recording With Web
+
+To exemplify how you can use the web recording and understand how it works, let’s create a project that enables you to go to UiPath Academy and sign in to your account with your email address.It is recommended to run your web automations on Internet Explorer 11 and above, Mozilla Firefox 50 or above, or the latest version of Google Chrome.
+
+Open an Internet Explorer instance and navigate to https://academy.uipath.com.In UiPath Studio, create a new sequence. Add an Open Browser activity to the Designer panel.Select the activity and, in the Url field, write https://academy.uipath.com.In the Design tab, in the Wizards group, select Recording > Web. The Web Recording toolbar is displayed and the main view is minimized.Click Record. The automating recording process starts.In Internet Explorer, click Login/ Sign up, and then select Continue with Email.Enter your email address and password.When the Type Into pop-up is displayed for your password, make sure that you select the Type Password check box. Besides the Type Into activity, another activity, Get Password, is created in the sequence. This activity hides the password behind asterisks (*) and stores it in a string variable.Click Login and press Esc two times. The recording is saved and displayed in the Designer panel.Close Internet Explorer manually. In Studio, add a Close Tab activity as the last activity in the Attach Browser container.Press F5. The automation is executed as expected.
+
+Download example

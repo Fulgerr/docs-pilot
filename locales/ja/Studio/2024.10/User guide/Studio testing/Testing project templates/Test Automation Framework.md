@@ -1,0 +1,15 @@
+﻿# Test Automation Framework 
+
+# Overview
+
+The Test Automation Framework is a template that provides a foundation for testing projects by incorporating essential best practices. The framework includes capabilities for managing assets, constants, logging, and exception handling.
+
+# How it works
+
+The template follows three consecutive phases:SetUp (SetUp.xaml) — This phase reads the Assets.json file and initializes the applications used in the process. If the initialization is successful, the execution moves to the Run Test phase. If it fails, the execution ends, and a test case fails, generating a screenshot that is available in Orchestrator.InitAllAssets.xaml— This phase initializes, populates, and outputs a configuration dictionary, Assets, that is used throughout the project. Assets are retrieved from Orchestrator.Run Test (placeholder for test case)— This phase is where the Test Case is executed. The Placeholder activity changes at runtime into an Invoke Workflow File activity. This activity then invokes the Test Case with the execution template attached to it. This creates a temporary workflow file called Generated – testCaseName. The Test Case is wrapped in a Timeout Scope that has the Throw Exception After input value set to the TestTimeOut constant. If the execution of the Test Case exceeds the TestTimeOut, it stops the execution. This is useful in case a process ends up in an infinite loop, as it stops the execution so the robot can be free.TearDown (TearDown.xaml)— This phase finalizes the test case execution and performs necessary actions to clean up the environment for future runs.KillAllProcesses.xaml—Forces the termination of a Windows process that represents an application used in the business process. However, killing processes may lead to undesired outcomes, such as losing unsaved changes to files. Despite the name of this workflow, it is not mandatory to always kill all the processes used. Other steps might be more appropriate to return the system to a clean state, depending on the requirements of the business process.TakeScreenshots.xaml—Takes a screenshot of the entire screen and saves it as .PNG in a folder specified by the in_Folder argument . You can invoke this phase wherever needed in the workflow.
+
+# Customizing the template
+
+To configure the template for your specific use case, follow these steps:In the Data folder, open the Assets.json file, and add the Orchestrator assets you need to access.Use the Assets.json file for any type of assets, except credentials. To use credential assets defined in Orchestrator, add them as a Constant instead.In the Data Manager, under Constants, add the credential assets you want to use. To access them add a Get Credential activity.If the credential asset is stored in a different Orchestrator folder than the one where the process is running, create another Constant to store the folder name.Change the TestTimeOut constant to modify the allowed execution time of a test case.
+
+The default dependencies of this project template are UiPath.System.Activities, UiPath.UIAutomation.Activities, and UiPath.Testing.Activities.
