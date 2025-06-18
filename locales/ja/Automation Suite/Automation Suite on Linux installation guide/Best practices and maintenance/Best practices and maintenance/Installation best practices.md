@@ -1,6 +1,0 @@
-﻿# Installation best practices
-
-To avoid your SSH session getting interrupted, we recommend initiating a tmux session and then running the installation process in the context of that session. If run under the tmux session, the SSH session can be interrupted, and you can reconnect to the previous session from where the installer was initiated.Take the following steps:
-
-SSH into the remote machine. Install tmux on the machine using the following command:sudo yum install tmuxCreate a tmux session by running the following command.tmux new -s uipath_installOnce inside tmux, you can start the installation process.Commands such as the following one run in the session../installUiPathAS.sh
-./bin/uipathctl rke2 install -i /opt/UiPathAutomationSuite/cluster_config.json -o ./output.json -k -j server --offline-bundle ./as-infra.tar.gz --offline-tmp-folder /var/tmp --install-offline-prereqs --accept-license-agreementTo list all sessions, run the following command:tmux lsTo connect to most recent session, run the following command:tmux aTo connect to a session by name, run the following command:tmux attach -t uipath_installTo leave or detach from the tmux session, press Ctrl+B and then press D.

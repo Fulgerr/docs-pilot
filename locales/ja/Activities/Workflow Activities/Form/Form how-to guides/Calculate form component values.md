@@ -1,2 +1,0 @@
-﻿# Calculate form component values
-
