@@ -1,121 +1,127 @@
-# Folder structure
+# Summary
 
-## Repository model
+The documentation repository uses a mono-repo model. All product source documentation resides here; application code exists in a separate repository. Localization files will reside either in a dedicated repository or alongside the English source (to be determined).
 
-- All documentation lives in a single monorepo, separate from the application code.
-- This enforces a clear boundary between source code and documentation content.
+The repository employs three primary branch types: `main`, `develop`, and `feature/*`. Branch naming conventions can be adjusted as needed.
 
-## Root-level organization
+- **main** is the production source, deploying to [docs.uipath.com](https://docs.uipath.com).
+- **develop** is the staging branch, used for testing and validation before release.
+- **feature/*** branches are for active authoring and trigger preview deployments.
 
-- Each product or project area has its own root-level folder.
-- These folders correspond 1:1 with entries on the landing page of `docs.uipath.com`.
-- Each guide type is a sub-folder under the product root level folder (e.g., Orchestrator API guide, user guide, etc.).
+Versioning is handled by directory structure (e.g., `orchestrator/latest`, `studio/2024.10`).  
+No direct commits are allowed to `main` or `develop`; all changes must go through pull requests (PRs).
 
-## Folder contents
+Authoring must always begin in a feature branch, with PRs targeting `develop` and then being promoted to `main`.
 
-### Product folders
+Documentation updates must be delivery-aware: all environments (e.g., cloud, on-premises) are covered simultaneously. Variables and conditional logic are used to maximize content reuse. An automated checker validates this.
 
-- Contain full documentation hierarchy and `.md`/`.mdx` content files.
-- Include a local `assets/` folder for images and reusable files specific to that product.
+Preview environments are automatically generated for each feature branch.
 
-### Global assets folder
+Merges are moderated. Only documentation owners or moderators can approve merges. Overrides are possible via structured comments when necessary.
 
-- Located at the root of the repo.
-- Holds cross-product reusable content: images, code snippets, etc.
+For details on the publishing strategy and deployment process, refer to the [publishing strategy documentation](#).
 
-# Branches 
+---
 
-## Develop branch
+# Repository structure and branching model
 
-- Shared workspace for ongoing content work across all products and projects.
-- May be unstable or incomplete, not intended for publishing.
-- CI/CD pipelines should not build or deploy from this branch.
+The documentation will be managed in a mono-repo. All product source documentation lives here. Application code is maintained separately. Localization files may reside in a separate repository or with the English source (TBD).
 
-## Cloud release branches
+| Branch      | Purpose                              | Deployment                        |
+| ----------- | ------------------------------------ | --------------------------------- |
+| `main`      | Canonical source of truth            | Production ([docs.uipath.com](https://docs.uipath.com))           |
+| `develop`   | Active development, staging for main | Staging preview ([docs-staging.uipath.com](https://docs-staging.uipath.com))  |
+| `feature/*` | Work-in-progress authored content    | Per-PR preview (docs-dev)         |
 
-- One release branch per product per sprint.
-- **Naming convention:** `product/release/sXXX` (e.g., `orchestrator/release/s170`).
-- These branches are used to publish to (we will have one sprint branch for each):
-  - Cloud Commercial
-  - Cloud Public Sector
-  - Cloud Dedicated
-- Conditional content (`DOCS_ENV`) is used to control environment-specific visibility without duplicating content.
+**Rule:** No direct pushes to `main` or `develop`. All updates are submitted via pull requests, with enforced reviewer approval through `CODEOWNERS`.
 
-> **Question:** What does the sprint number represent (the documentation sprint or the engineering sprint)?
+---
 
-## On-premises release branches
+# Folder and versioning structure
 
-- Forked from an agreed-upon cloud release branch at a milestone.
-- **Naming convention:** `product/release/YYYY.MM` (e.g., `orchestrator/release/2025.10`).
-- One branch per product per on-prem version for Automation Suite.
-- Standalone product docs for web products fork from the previous on-premises release branch since there is no active development there (e.g., `orchestrator/release/2024.10` → `2025.10`).
+Example directory structure:
 
-## Work branches
+```
+├── orchestrator/
+│   ├── includes/
+│   ├── media/
+│   ├── latest/
+│   │   ├── user-guide/
+│   │   ├── api-guide/
+│   │   └── release-notes/
+│   └── 2024.10/
+│       ├── user-guide/
+│       ├── api-guide/
+│       └── release-notes/
+├── studio/
+│   ├── includes/
+│   ├── media/
+│   ├── latest/
+│   └── 2024.10/
+└── assistant/
+    └── ...
+```
 
-- Temporary branches for feature work, bug fixes, or unmerged future content.
-- **Naming convention:** `feat-<description>` or `hotfix-<description>`
-- **Examples:**
-  - `feat-api-rate-limits`
-  - `hotfix-public-sector-wrong-paths`
-- These branches are never published directly. Authors raise PRs into `develop`.
+---
 
-# Flows 
+# Authoring flow
 
-## Forward branch integration (merging features)
+## Authoring to production
 
-- Used when integrating feature work into its intended future target branch (e.g., from `feat-x` to `develop`, and from there into `release/s172`).
-- Always develop and merge features into `develop`.
-- Release branches are cut from `develop` at the sprint boundary.
-- If needed, cherry-pick from `develop` into `release/sXXX`, not the other way around.
+```
+author ➝ feature branch (docs-dev)
+          |
+          ▼
+   PR to develop (full review, CI checks, preview URL)
+          |
+     - Markdown lint/style
+     - Structural validation
+     - Conditional flag checks
+     - Product owner approval
+     - Preview deploy (e.g. Netlify)
+          ▼
+        develop (docs-staging)
+          |
+          ▼
+   PR to main (high-level checks, release gating)
+          |
+     - Release validation
+     - Optional final approval (release manager)
+     - Production deployment trigger
+          ▼
+         main (docs-production)
+```
 
-## Backporting (porting to older release branches)
+### Step 1: Authoring
 
-- Backporting refers to the process of taking a change and applying it to an older release branch (e.g., `release/2023.10`).
-- Always do the work against `develop`. This ensures changes are future-compatible and integrated with the mainline.
-- After validation on `develop`, cherry-pick or manually port the relevant subset to older release branches in descending order of relevance (e.g., `release/2024.10`, then `release/2023.10`, etc.).
-- Backporting is selective. You must isolate only the changes that are relevant, compatible, and safe to introduce in the older context, typically for:
-  - Long-term support obligations
-  - Critical fixes for on-premises versions
-  - Compliance or customer-specific patches
+- Start in a feature branch, e.g., `feat-studio-triggers-doc`.
+- The working directory for ongoing development is always `latest`.
+- Edit or create files within the relevant product and version folder, e.g., `apps/latest/user-guide/introduction.md`.
+- Use flags (e.g., `cloudFlavor`) to conditionally show/hide content by environment, and variables for output variations.
+- Push changes to the feature branch.
 
-# Feature flags
+### Step 2: Pull request into develop
 
-- Not used.
-- Feature flags in application code allow future features to be deployed hidden. This is overkill for docs and introduces bloat.
-- To delay publishing of existing documentation:
-  - Keep docs changes on a `feat-*` or `hotfix` branch.
-  - Do not merge into `develop` or a release branch until the content is publishable.
-- The risk of conflicts increases the further ahead the work is. Merge cautiously.
+- Open a PR targeting `develop`.
+- Pre-merge requirements:
+  - Lint checks
+  - Markdown standards enforcement
+  - Ownership review (moderator/owner required)
+  - Overrides possible via comment trigger (e.g., `/override-review`)
+- Automatic preview link generated (Netlify, Vercel, or GitHub Pages Preview).
+- PR previews must build all relevant variant outputs (cloud and on-premises).  
+  `latest/` serves as a staging area, not a finalized environment. This ensures all writers are aware of every delivery context.
 
-# MDX components and syntax
+### Step 3: Merging to develop
 
-## Example 1: Disclaimer  
+- Once approved, the PR is merged into `develop`.
+- Changes are visible at [docs-staging.uipath.com](https://docs-staging.uipath.com).
 
-&lt;Disclaimer&gt;
-  This documentation will be obsolete before you finish reading it.
-&lt;/Disclaimer&gt;
+### Step 4: Promote to main
 
-## Example 2: Condition
+- At release intervals:
+  - Open a PR from `develop` to `main`.
+  - Only approved, release-ready changes are included.
+  - Merged changes deploy to [docs.uipath.com](https://docs.uipath.com) according to the deployment cadence or trigger rules.
 
-&lt;Condition if="mac"&gt;
-  On macOS, run:
-
-## Example 3: Variable
-
-Your API base URL is: <Variable name="API_BASE_URL" />.
-
-Replace <Variable name="API_BASE_URL" /> with the value your admin failed to give you.
-
-## Example 4: Snippets
-
-1. Create your snippet file. Put the reusable content in its own .mdx file. For example `docs/snippets/warning.mdx`
-
-&lt;Disclaimer&gt;
-  This disclaimer is reusable. Ignore at your own risk.
-&lt;/Disclaimer&gt;
-
-2. Import and use the snippet
-
-In any .mdx file where you want to reuse that content:
-
-`import Warning from '../snippets/warning.mdx'`
+---
