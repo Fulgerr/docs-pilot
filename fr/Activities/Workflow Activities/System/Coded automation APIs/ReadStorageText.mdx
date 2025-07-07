@@ -1,0 +1,56 @@
+﻿
+
+Lire le texte de stockage
+=========================
+
+Télécharge un fichier à partir d'un compartiment de stockage spécifié dans Orchestrator et le stocke dans une variable String.
+
+Surcharges
+==========
+
+ReadStorageText\(String, String\) Renvoie le contenu d'un fichier donné dans un compartiment de stockage Orchestrator.ReadStorageText\(String, String, String\) Renvoie le contenu d'un certain fichier dans un compartiment de stockage Orchestrator, dans un dossier Orchestrator spécifié. ReadStorageText\(String, String, String, String, Int32\) Renvoie le contenu d'un certain fichier dans un compartiment de stockage Orchestrator, tout en saisissant un nom d'encodage et en configurant TimeoutMS.
+
+ReadStorageText\(String, String\)
+===================================
+
+Renvoie le contenu d'un fichier donné dans un compartiment de stockage Orchestrator.
+
+string ReadStorageText\( chemin de la chaîne, nom du compartiment de stockage de la chaîne \)
+
+PathString Le chemin du texte que vous souhaitez récupérer à partir du compartiment de stockage spécifié. Le fichier doit exister dans le conteneur de stockage Orchestrator source.storageBucketNameStringThe nom du compartiment de stockage dans lequel se trouve le fichier.
+
+ReadStorageText\(String, String, String\)
+===========================================
+
+Renvoie le contenu d'un fichier donné dans un compartiment de stockage Orchestrator, dans un dossier Orchestrator spécifié.
+
+string ReadStorageText\( string path, string storageBucketName, string folderPath \)
+
+PathString Le chemin du texte que vous souhaitez récupérer à partir du compartiment de stockage spécifié. Le fichier doit exister dans le conteneur de stockage Orchestrator source.storageBucketNameStringThe du compartiment de stockage dans lequel se trouve le fichier.folderPathString Le chemin d'accès au dossier Orchestrator que vous souhaitez utiliser avec cette activité. S'il est laissé vide, le dossier Orchestrator actuel est utilisé.
+
+RetournerValeur
+
+Chaîne de caractères \(string\)
+
+Le texte extrait du compartiment de stockage spécifié et stocké dans une variable de string.
+
+ReadStorageText\(String, String, String, String, Int32\)
+==========================================================
+
+Renvoie le contenu d'un certain fichier dans un compartiment de stockage Orchestrator, tout en saisissant un nom d'encodage et en configurant
+
+TimeoutMS
+
+.
+
+string ReadStorageText\( chemin de la chaîne, string storageBucketName, string folderPath, string encoding, int timeoutMS \)
+
+PathString Le chemin du texte que vous souhaitez récupérer à partir du compartiment de stockage spécifié. Le fichier doit exister dans le conteneur de stockage Orchestrator source.storageBucketNameStringThe du compartiment de stockage dans lequel se trouve le fichier.folderPathString Le chemin d'accès au dossier Orchestrator que vous souhaitez utiliser avec cette activité. S'il est laissé vide, le dossier Orchestrator actuel est utilisé.encodingString nom d’encodage pour décoder le contenu du fichier. Vous pouvez trouver la liste complète des codes pour chaque encodage de caractères sur la page Encodage des caractères pris en charge \(Supported Character Encoding\). Si aucun type d’encodage n’est spécifié, l’activité recherchera les marques d’ordre d’octet du fichier pour détecter l’encodage. Si aucune marque d’ordre d’octet n’est détectée, la page de code ANSI du système est sélectionnée par défaut.timeoutMSInt32 Spécifie la durée \(en millisecondes\) d’attente d’exécution de l’activité avant qu’une erreur ne soit générée. La valeur par défaut est de 30 000 millisecondes \(30 secondes\).
+
+RetournerValeur
+===============
+
+Chaîne de caractères \(string\)
+
+Le texte extrait du compartiment de stockage spécifié et stocké dans une variable de string.
+

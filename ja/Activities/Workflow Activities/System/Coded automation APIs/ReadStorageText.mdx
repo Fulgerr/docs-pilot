@@ -1,0 +1,69 @@
+﻿
+
+ストレージ テキストを読み込み
+===============
+
+Orchestrator で指定したストレージ バケットからファイルをダウンロードして String 型変数に格納します。
+
+オーバー ロード
+========
+
+ReadStorageText\(String, String\)Orchestrator のストレージ バケットにある特定のファイルのコンテンツを返します。ReadStorageText\(String, String, String\)指定した Orchestrator フォルダーにある Orchestrator ストレージ バケットにある特定のファイルの内容を返します。ReadStorageText\(String, String, String, String, Int32\)エンコード名を入力してタイムアウト \(ミリ秒\) を設定するときに、Orchestrator のストレージ バケットにある特定のファイルのコンテンツを返します。
+
+ReadStorageText\(String, String\)
+===================================
+
+Orchestrator のストレージ バケットにある特定のファイルのコンテンツを返します。
+
+string ReadStorageText\(
+文字列パス、
+文字列ストレージバケット名
+\)
+
+pathString指定されたストレージ バケットから取得するテキストのパスです。ファイルはソース Orchestrator の Storage container.storageBucketNameStringに存在している必要があります。ファイルが存在するストレージ バケットの名前です。
+
+ReadStorageText\(String, String, String\)
+===========================================
+
+指定した Orchestrator フォルダーにある Orchestrator ストレージ バケットにある特定のファイルのコンテンツを返します。
+
+string ReadStorageText\(
+文字列パス、
+string storageBucketName 文字列
+文字列フォルダー パス
+\)
+
+pathString指定されたストレージ バケットから取得するテキストのパスです。ファイルはソース Orchestrator の Storage container.storageBucketNameStringに存在している必要があります。ファイルが存在するストレージ バケットの名前です。フォルダー パスStringこのアクティビティで使用する Orchestrator フォルダーのパスです。何も指定しない場合は、現在の Orchestrator フォルダーが使用されます。
+
+戻り値
+
+文字列
+
+指定したストレージ バケットから取得されるテキストです。String 型の変数に格納されます。
+
+ReadStorageText\(String, String, String, String, Int32\)
+==========================================================
+
+エンコード名を入力して Orchestrator のストレージ バケットにある特定のファイルのコンテンツを取得し、
+
+タイムアウト \(ミリ秒\)
+
+　
+
+string ReadStorageText\(
+文字列パス、
+string storageBucketName 文字列
+string folderPath、
+文字列エンコード
+int タイムアウト \(ミリ秒\)
+\)
+
+pathString指定されたストレージ バケットから取得するテキストのパスです。ファイルはソース Orchestrator の Storage container.storageBucketNameStringに存在している必要があります。ファイルが存在するストレージ バケットの名前です。フォルダー パスStringこのアクティビティで使用する Orchestrator フォルダーのパスです。何も指定しない場合は、現在の Orchestrator フォルダーが使用されます。encodingStringのファイルの内容をデコードするためのエンコード名。各文字エンコードのコードの完全なリストについては、「サポートされている文字エンコード」をご覧ください。エンコードの種類が指定されていない場合、アクティビティはファイルのバイト オーダー マークを検索してエンコードを検出します。バイト オーダー マークが検出されない場合は、システム ANSI コード ページが既定で選択されます。timeoutMSInt32アクティビティの実行が完了するまで待機する時間をミリ秒単位で指定します。指定した時間が経過しても実行が完了しない場合には例外をスローします。既定値は 30000 ミリ秒 \(30 秒\) です。
+
+戻り値
+===
+
+文字列
+
+指定したストレージ バケットから取得されるテキストです。String 型の変数に格納されます。
+
