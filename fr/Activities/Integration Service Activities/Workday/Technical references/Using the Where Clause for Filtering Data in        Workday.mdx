@@ -1,0 +1,134 @@
+﻿
+
+Using the Where Clause for Filtering Data in
+============================================
+
+        Workday
+
+Where does filtering apply?
+===========================
+
+The List All Records activity in Workday supports queries for the Where
+clause and Include, Exclude fields to bring in or let go of excess
+data.
+
+How
+===
+
+                to construct the Where clause?
+
+You can read more on the
+Get\_Organizations SOAP service here:Get\_Organizations Operation
+Details.
+
+Any content within the Request\_Criteria
+section can be considered eligible to be included in the Where
+clause of an activity. Similarly, any content within the
+Response\_Group section can be utilized with the
+Includes or Excludes elements.You can see this
+in the screenshots below:
+
+For Request\_Criteria we can see the
+following parameters:
+
+To create a Where clause with boolean fields, you
+can construct it as shown below:
+
+Where = "boolean\_field =
+'true'"
+
+Where = "Include\_Inactive='false' and
+Enable\_Transaction\_Log\_Lite='true'"
+
+For the Type that is
+Object, like Organization\_TypeObject, this is how a
+Where clause can be built:
+
+The type
+here can be WID and Organization\_Type\_ID, so the
+clause needs to be constructed in the following format:
+
+Where =
+"Organization\_Type\_Reference.Attribute\_type='WID' and
+Organization\_Type\_Reference.Attribute\_Value='WIDTEST'".
+
+Similarly,
+for Transaction\_Log\_Criteria you can write a Where clause in
+the following format:
+
+So, the following format must be used:
+
+Where
+=
+"Transaction\_Log\_Criteria.Transaction\_Date\_Range\_Data.Updated\_From='2022\-09\-05T12:00:00'
+and
+Transaction\_Log\_Criteria.Transaction\_Date\_Range\_Data.Updated\_Through='2023\-01\-01T16:00:00'"
+
+If
+you wish to consolidate all the aforementioned elements into a single query, you can
+structure it similar to the following example.
+
+Where
+
+=
+
+"Transaction\_Log\_Criteria.Transaction\_Date\_Range\_Data.Updated\_From='2022\-09\-05T12:00:00'
+and
+Transaction\_Log\_Criteria.Transaction\_Date\_Range\_Data.Updated\_Through='2023\-01\-01T16:00:00'
+and Include\_Inactive='false' and Enable\_Transaction\_Log\_Lite='true' and
+Organization\_Type\_Reference.Attribute\_type='WID' and
+Organization\_Type\_Reference.Attribute\_Value='WIDTEST'"
+
+.
+
+Important
+Information:
+
+1. This is just an illustrative example and may not represent an actual query scenario.
+2. The Where clause must always be passed as String.
+
+Using the Includes and Excludes
+===============================
+
+                Parameters
+
+The utilization of the Includes and
+Excludes functions is associated with the
+Response\_Group attribute group, as you can see in the image
+below.
+
+These two functions are used to retrieve or omit data
+elements from the response, allowing you to focus on the specific information you
+need while excluding any unnecessary or sensitive data.
+
+In this case we have
+the data elements Roles\_Data, Hierarchy\_Data,
+Supervisory\_Data and
+Staffing\_Restrictions\_Data.
+
+If you want to include these
+in the activity output, just pass them as a comma\-separated string like in the
+following
+example:
+
+"Roles\_Data,Supervisory\_Data,Staffing\_Restrictions\_Data"
+
+Some
+more examples of this practice can be found below:
+
+ObjectSome examples of supported WHERE clausesIncludes \(Comma separated values\)Excludes \(Comma separated values\)Employee/WorkersQuery with reference objects:
+"Organization\_Reference.ID.Attribute\_type='WID' and
+Organization\_Reference.ID.Attribute\_Value='WIDTEST" and
+Include\_Subordinate\_Organizations='true'Query with transaction log criteria:"Transaction\_Log\_Criteria.Transaction\_Date\_Range\_Data.Updated\_From='2020\-09\-05T12:00:00'
+and
+Transaction\_Log\_Criteria.Transaction\_Date\_Range\_Data.Updated\_Through='2021\-09\-05T16:00:00'"
+and Include\_Subordinate\_Organizations='true'"Personal\_Information,Additional\_Jobs,Employment\_Information,Compensation,Organizations,Roles,Management\_Chain\_Data,Multiple\_Managers\_in\_Management\_Chain\_Data,Benefit\_Enrollments,Benefit\_Eligibility,Related\_Persons,Qualifications,Employee\_Review,Goals,Development\_Items,Skills,Photo,Worker\_Documents,Transaction\_Log\_Data,Subevents\_for\_Corrected\_Transaction,Subevents\_for\_Rescinded\_Transaction,Succession\_Profile,Talent\_Assessment,Employee\_Contract\_Data,Contracts\_for\_Terminated\_Workers,Collective\_Agreement\_Data,Probation\_Period\_Data,Extended\_Employee\_Contract\_Details,Feedback\_Received,User\_Account,Career,Account\_Provisioning,Background\_Check\_Data,Contingent\_Worker\_Tax\_Authority\_Form\_Information""Organization\_Support\_Role\_Data,Location\_Hierarchies,Cost\_Centers,Cost\_Center\_Hierarchies,Companies,Company\_Hierarchies,Matrix\_Organizations,Pay\_Groups,Regions,Region\_Hierarchies,Supervisory\_Organizations,Teams,Custom\_Organizations,Funds,Fund\_Hierarchies,Grants,Grant\_Hierarchies,Business\_Units,Business\_Unit\_Hierarchies,Programs,Program\_Hierarchies,Gifts,Gift\_Hierarchies"Job familiesQuery with inactive job families"Include\_InActive\_Job\_Families='true'""Reference,Job\_Profile\_Info\_Data"NALocationsQuery with reference objectsLocation\_Type\_Reference.ID.Attribute\_type='WID' and
+Location\_Type\_Reference.ID.Attribute\_Value='WIDTEST'Query with location nameLocation\_Name='HYD'Query with inactive locationsExclude\_Inactive\_Locations='true'"Reference,Location\_Data"NAOrganizations Query with reference objectsOrganization\_Type\_Reference.ID.Attribute\_type=‘WID’ and
+Organization\_Type\_Reference.ID.Attribute\_Value=‘WIDTEST’ Query with Inactive organizationsInclude\_Inactive='true'Query with transaction log criteria"Transaction\_Log\_Criteria.Transaction\_Date\_Range\_Data.Updated\_From='2020\-09\-05T12:00:00'
+and
+Transaction\_Log\_Criteria.Transaction\_Date\_Range\_Data.Updated\_Through='2021\-09\-05T16:00:00'" "Transaction\_Log\_Criteria.Transaction\_Date\_Range\_Data.Updated\_From='2020\-09\-05T12:00:00'
+and
+Transaction\_Log\_Criteria.Transaction\_Date\_Range\_Data.Updated\_Through='2021\-09\-05T16:00:00'" "Transaction\_Log\_Criteria.Transaction\_Type\_References.Transaction\_Type\_Reference.Attribute\_type='WID'
+and
+Transaction\_Log\_Criteria.Transaction\_Type\_References.Transaction\_Type\_Reference.Attribute\_Value='WIDTEST'"Roles\_Data,Hierarchy\_Data,Supervisory\_Data,Staffing\_Restrictions\_Data"NA
+
