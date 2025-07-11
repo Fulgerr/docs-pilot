@@ -1,64 +1,69 @@
-﻿# ReadStorageText
+﻿
 
-Downloads a file from a specified Storage Bucket in Orchestrator and stores it in a string variable.
+ストレージ テキストを読み込み
+===============
 
-# 
+Orchestrator で指定したストレージ バケットからファイルをダウンロードして String 型変数に格納します。
 
+オーバー ロード
+========
 
+ReadStorageText\(String, String\)Orchestrator のストレージ バケットにある特定のファイルのコンテンツを返します。ReadStorageText\(String, String, String\)指定した Orchestrator フォルダーにある Orchestrator ストレージ バケットにある特定のファイルの内容を返します。ReadStorageText\(String, String, String, String, Int32\)エンコード名を入力してタイムアウト \(ミリ秒\) を設定するときに、Orchestrator のストレージ バケットにある特定のファイルのコンテンツを返します。
 
-# Overloads
+ReadStorageText\(String, String\)
+===================================
 
-ReadStorageText(String, String)Returns the contents of a certain file in an Orchestrator storage bucket.ReadStorageText(String, String, String)Returns the contents of a certain file in an Orchestrator storage bucket, at a specified Orchestrator folder.ReadStorageText(String, String, String, String, Int32)Returns the contents of a certain file in an Orchestrator storage bucket, while inputting an encoding name, and configuring TimeoutMS.
+Orchestrator のストレージ バケットにある特定のファイルのコンテンツを返します。
 
-# ReadStorageText(String, String)
+string ReadStorageText\(
+文字列パス、
+文字列ストレージバケット名
+\)
 
-Returns the contents of a certain file in an Orchestrator storage bucket.
+pathString指定されたストレージ バケットから取得するテキストのパスです。ファイルはソース Orchestrator の Storage container.storageBucketNameStringに存在している必要があります。ファイルが存在するストレージ バケットの名前です。
 
-string ReadStorageText(
-	string path,
-	string storageBucketName
-)
+ReadStorageText\(String, String, String\)
+===========================================
 
-pathStringThe path of the text you want to retrieve from the specified Storage Bucket. The file must exist in the source Orchestrator Storage container.storageBucketNameStringThe name of the Storage Bucket the file is located in.
+指定した Orchestrator フォルダーにある Orchestrator ストレージ バケットにある特定のファイルのコンテンツを返します。
 
-# ReadStorageText(String, String, String)
+string ReadStorageText\(
+文字列パス、
+string storageBucketName 文字列
+文字列フォルダー パス
+\)
 
-Returns the contents of a certain file in an Orchestrator storage bucket, at a specified Orchestrator folder.
+pathString指定されたストレージ バケットから取得するテキストのパスです。ファイルはソース Orchestrator の Storage container.storageBucketNameStringに存在している必要があります。ファイルが存在するストレージ バケットの名前です。フォルダー パスStringこのアクティビティで使用する Orchestrator フォルダーのパスです。何も指定しない場合は、現在の Orchestrator フォルダーが使用されます。
 
-string ReadStorageText(
-	string path,
-	string storageBucketName,
-	string folderPath
-)
+戻り値
 
-pathStringThe path of the text you want to retrieve from the specified Storage Bucket. The file must exist in the source Orchestrator Storage container.storageBucketNameStringThe name of the Storage Bucket the file is located in.folderPathStringThe path to the Orchestrator Folder you want to use with this activity. If left empty, the current Orchestrator folder is used.
+文字列
 
-Return value
+指定したストレージ バケットから取得されるテキストです。String 型の変数に格納されます。
 
-String
+ReadStorageText\(String, String, String, String, Int32\)
+==========================================================
 
-The text retrieved from the specified Storage Bucket, stored in a String variable.
+エンコード名を入力して Orchestrator のストレージ バケットにある特定のファイルのコンテンツを取得し、
 
-# ReadStorageText(String, String, String, String, Int32)
+タイムアウト \(ミリ秒\)
 
-Returns the contents of a certain file in an Orchestrator storage bucket, while inputting an encoding name, and configuring
+　
 
-TimeoutMS
+string ReadStorageText\(
+文字列パス、
+string storageBucketName 文字列
+string folderPath、
+文字列エンコード
+int タイムアウト \(ミリ秒\)
+\)
 
-.
+pathString指定されたストレージ バケットから取得するテキストのパスです。ファイルはソース Orchestrator の Storage container.storageBucketNameStringに存在している必要があります。ファイルが存在するストレージ バケットの名前です。フォルダー パスStringこのアクティビティで使用する Orchestrator フォルダーのパスです。何も指定しない場合は、現在の Orchestrator フォルダーが使用されます。encodingStringのファイルの内容をデコードするためのエンコード名。各文字エンコードのコードの完全なリストについては、「サポートされている文字エンコード」をご覧ください。エンコードの種類が指定されていない場合、アクティビティはファイルのバイト オーダー マークを検索してエンコードを検出します。バイト オーダー マークが検出されない場合は、システム ANSI コード ページが既定で選択されます。timeoutMSInt32アクティビティの実行が完了するまで待機する時間をミリ秒単位で指定します。指定した時間が経過しても実行が完了しない場合には例外をスローします。既定値は 30000 ミリ秒 \(30 秒\) です。
 
-string ReadStorageText(
-	string path,
-	string storageBucketName,
-	string folderPath,
-	string encoding,
-	int timeoutMS
-)
+戻り値
+===
 
-pathStringThe path of the text you want to retrieve from the specified Storage Bucket. The file must exist in the source Orchestrator Storage container.storageBucketNameStringThe name of the Storage Bucket the file is located in.folderPathStringThe path to the Orchestrator Folder you want to use with this activity. If left empty, the current Orchestrator folder is used.encodingStringThe encoding name for decoding the file content. You can find the complete list of codes for each character encoding on the Supported Character Encoding page. If no encoding type is specified, the activity will search for the file's Byte Order Marks to detect the encoding. If no Byte Order Marks are detected, the system ANSI code page is selected by default.timeoutMSInt32Specifies the amount of time (in milliseconds) to wait for the activity to run before an error is thrown. The default value is 30000 milliseconds (30 seconds).
+文字列
 
-# Return value
+指定したストレージ バケットから取得されるテキストです。String 型の変数に格納されます。
 
-String
-
-The text retrieved from the specified Storage Bucket, stored in a String variable.
