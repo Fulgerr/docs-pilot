@@ -1,41 +1,42 @@
-﻿# AttachDocument
+﻿
+
+AttachDocument
+==============
 
 Attach documents to your test execution results to have proof of the outcome. You can
-            view the attachment in Orchestrator by navigating to Testing > Test
-                Executions > Test Run Details and then selecting View attachments
-            on a specific test case.
+view the attachment in Orchestrator by navigating to Testing > Test
+Executions > Test Run Details and then selecting View attachments
+on a specific test case.
 
-# 
+オーバー ロード
+========
 
+AttachDocument\(String\)Attach a document to the current test case in
+Orchestrator.AttachDocument\(String,
+IEnumerable\)Attach a document, along with specific tags, to the current test case in Orchestrator.
 
-
-# Overloads
-
-AttachDocument(String)Attach a document to the current test case in
-                                Orchestrator.AttachDocument(String,
-                                IEnumerable<String>)Attach a document, along with specific tags, to the current test
-                                case in Orchestrator.
-
-# AttachDocument(String)
+AttachDocument\(String\)
+==========================
 
 Attach a document to the current test case in Orchestrator.
 
-void AttachDocument(
-	string filePath
-)
+void AttachDocument\(
+string filePath
+\)
 
 filePathStringSpecify the file path of the document that will be attached to the test
-                        case.
+case.
 
-# AttachDocument(String, IEnumerable<String>)
+AttachDocument\(String, IEnumerable\)
+=======================================
 
 Attach a document, along with specific tags, to the current test case in
-                Orchestrator.
+Orchestrator.
 
-void AttachDocument(
-	string filePath,
-	IEnumerable<string> tags
-)
+void AttachDocument\(
+string filePath,
+IEnumerable tags \)
 
 filePathStringSpecify the file path of the document that will be attached to the test
-                        case.tagsIEnumerable<String>Set custom tags to the attached document.
+case.tagsIEnumerableSet custom tags to the attached document.
+
