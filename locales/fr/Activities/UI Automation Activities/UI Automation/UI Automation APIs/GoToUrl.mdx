@@ -1,78 +1,83 @@
-﻿# GoToUrl
+﻿
+
+GoToUrl
+=======
 
 Navigates to the specified URL in the indicated web browser. This API must be added after
-                 or .
+or .
 
-# 
+Surcharges
+==========
 
+GoToUrl\(TargetAnchorableModel,
+GoToUrlOptions\)Navigates the web browser to the URL associated with the
+specified TargetAnchorableModel object with
+additional options specified in the goToUrlOptions
+object.GoToUrl\(String, GoToUrlOptions\)Navigates the web browser to the URL associated with the
+specified target with additional options specified
+in the goToUrlOptions object.GoToUrl\(TargetAnchorableModel, String\)Navigates the web browser associated with the specified
+TargetAnchorableModel to the provided URL with
+the specified navigation mode.GoToUrl\(String, String\)Navigates the web browser associated with the specified target to
+the provided URL with the specified navigation mode.
 
-
-# Overloads
-
-GoToUrl(TargetAnchorableModel,
-                                GoToUrlOptions)Navigates the web browser to the URL associated with the
-                                specified TargetAnchorableModel object with
-                                additional options specified in the goToUrlOptions
-                                object.GoToUrl(String, GoToUrlOptions)Navigates the web browser to the URL associated with the
-                                specified target with additional options specified
-                                in the goToUrlOptions object.GoToUrl(TargetAnchorableModel, String)Navigates the web browser associated with the specified
-                                    TargetAnchorableModel to the provided URL with
-                                the specified navigation mode.GoToUrl(String, String)Navigates the web browser associated with the specified target to
-                                the provided URL with the specified navigation mode.
-
-# GoToUrl(TargetAnchorableModel, GoToUrlOptions)
+GoToUrl\(TargetAnchorableModel, GoToUrlOptions\)
+==================================================
 
 Navigates the web browser to the URL associated with the specified
-                    TargetAnchorableModel object with additional options specified
-                in the goToUrlOptions object.
+TargetAnchorableModel object with additional options specified
+in the goToUrlOptions object.
 
-GoToUrl(
-    TargetAnchorableModel target, 
-    GoToUrlOptions goToUrlOptions)
+GoToUrl\(
+TargetAnchorableModel target,
+GoToUrlOptions goToUrlOptions\)
 
 targetTargetAnchorableModelThe target web browser as a TargetAnchorableModel
-                        object.goToUrlOptions GoToUrlOptionsAn object of type GoToUrlOptions that contains additional
-                        options for the navigationUrl
-                                    String - the URL that you want to navigate to.
+object.goToUrlOptions GoToUrlOptionsAn object of type GoToUrlOptions that contains additional
+options for the navigationUrl
+String \- the URL that you want to navigate to.
 
-# GoToUrl(String, GoToUrlOptions)
+GoToUrl\(String, GoToUrlOptions\)
+===================================
 
 Navigates the web browser to the URL associated with the specified
-                    target with additional options specified in the
-                    goToUrlOptions object.
+target with additional options specified in the
+goToUrlOptions object.
 
-GoToUrl(
-    string target, 
-    GoToUrlOptions goToUrlOptions)
+GoToUrl\(
+string target,
+GoToUrlOptions goToUrlOptions\)
 
 targetStringThe target web browser as a string from the Object Repository.goToUrlOptions GoToUrlOptionsAn object of type GoToUrlOptions that contains additional
-                        options for the navigationUrl
-                                    String - the URL that you want to navigate to.
+options for the navigationUrl
+String \- the URL that you want to navigate to.
 
-# GoToUrl(TargetAnchorableModel, String)
+GoToUrl\(TargetAnchorableModel, String\)
+==========================================
 
 Navigates the web browser associated with the specified
-                    TargetAnchorableModel to the provided URL with the specified
-                navigation mode.
+TargetAnchorableModel to the provided URL with the specified
+navigation mode.
 
-GoToUrl(
-    TargetAnchorableModel target, 
-    string url,
-    [NGoToUrlMode mode])
+GoToUrl\(
+TargetAnchorableModel target,
+string url,
+\[NGoToUrlMode mode\]\)
 
-targetTargetAnchorableModelRepresents the target web browser.urlStringSpecify the URL to go to.mode (Optional)Specifies the navigation mode. The NGoToUrlMode type
-                        determines how the navigation is performed.
+targetTargetAnchorableModelRepresents the target web browser.urlStringSpecify the URL to go to.mode \(Optional\)Specifies the navigation mode. The NGoToUrlMode type
+determines how the navigation is performed.
 
-# GoToUrl(String, String)
+GoToUrl\(String, String\)
+===========================
 
 Navigates the web browser to the URL associated with the specified
-                    TargetAnchorableModel object with additional options specified
-                in the goToUrlOptions object.
+TargetAnchorableModel object with additional options specified
+in the goToUrlOptions object.
 
-GoToUrl(
-    string target, 
-    string url, 
-    [NGoToUrlMode mode])
+GoToUrl\(
+string target,
+string url,
+\[NGoToUrlMode mode\]\)
 
 targetStringThe target web browser as a string from the Object Repository.urlStringSpecify the URL to go to.modeNGoToUrlModeSpecifies the navigation mode. The NGoToUrlMode type
-                        determines how the navigation is performed.
+determines how the navigation is performed.
+
