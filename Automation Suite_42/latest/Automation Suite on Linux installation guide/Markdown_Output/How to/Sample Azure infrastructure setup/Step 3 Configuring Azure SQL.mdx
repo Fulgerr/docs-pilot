@@ -1,0 +1,5 @@
+﻿# Step 3: Configuring Azure SQL
+
+In this section, you will provision and configure an SQL Server.Each service uses a database with its own specifications.In the installation process, the default option is to give the installer access to the SQL Server so it can create the required databases. As an alternative option, you could also create the databases manually using the default DB names listed in Configuring Microsoft SQL Server.
+
+Go to Azure SQL from the home page. Go to the Azure SQL, select Create, choose Database server as your SQL database deployment option, and then select Create.Fill in the required fields and select Next:We do not support the following characters in the SQL username and password: ; # @ ?.Under the Networking tab, select yes for allow Azure Services and select Next:Select NextFill in any tags required and select Next:(Optional step - only if you require tags on internal policies, otherwise ignore)Review the information and select Create:Wait until the deployment is complete:

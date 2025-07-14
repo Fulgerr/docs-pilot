@@ -1,0 +1,16 @@
+﻿# Update Record
+
+UiPath.GitHub.IntegrationService.Activities.UpdateRecord
+
+# Description
+
+Updates a record in GitHub.
+
+# Project Compatibility
+
+Windows | Cross-platform
+
+# Configuration
+
+* Connection - The connection established in Integration Service. Access the drop-down to choose, add or manage connections.
+* Select Object - Select the type of object you want to update from the drop-down menu. Depending on the object you select, additional properties are displayed.

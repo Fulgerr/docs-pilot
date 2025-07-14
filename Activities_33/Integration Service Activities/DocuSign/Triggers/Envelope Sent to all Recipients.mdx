@@ -1,0 +1,21 @@
+﻿# Envelope Sent to all Recipients
+
+# Description
+
+Triggers when an envelope is sent to all recipients via DocuSign.
+
+# Project compatibility
+
+Windows | Cross-platform
+
+# Configuration
+
+* 
+* 
+
+
+
+
+
+* Envelopes ID - Automatically generated output variable.
+* Envelopes - Automatically generated output variable.
