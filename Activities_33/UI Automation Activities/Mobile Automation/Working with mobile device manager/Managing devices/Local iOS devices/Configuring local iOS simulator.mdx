@@ -1,0 +1,2 @@
+﻿# Configuring local iOS simulator
+
