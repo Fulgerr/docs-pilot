@@ -1,0 +1,180 @@
+# Deploying processes
+
+**Note:** You need **View** permissions on Packages and **View** and **Create** permissions on Processes to create a process.
+1. Navigate to **Automations > Processes** in the folder where you want to deploy the process. The **Processes** window is displayed.
+2. Click **Add**. The **Add Process** window is displayed.
+3. Select a package from the **Package Source Name** drop-down or click the upload area below to upload a new package. The latest version of the package is automatically selected. If the package version has tags that are not applied to the process, a **New tags have been found** notification window is displayed informing you about the number of tags.
+4. On the **New tags have been** found window, click **Add and continue** if you want to apply package tags to the process or click **Don't add** if you do not want to apply package tags to the process.
+5. From the **Package Version** drop-down, select the version of the package that you want to use. If the package has input and/or output arguments, they are displayed in the **Runtime Arguments** section.
+6. Select an entry point from the **Entry point** drop-down. By default, the `.xaml` set as main Studio is selected. The arguments view is refreshed to display the arguments in the selected workflow. [Learn more about runtime arguments](https://docs.uipath.com/orchestrator/automation-cloud/latest/user-guide/about-processes#runtime-arguments).
+    **Note:**
+    - For packages published before July 2020, Orchestrator cannot determine the main entry point, hence no entry point is selected by default. You need to select the entry point from the drop-down manually.
+    - If the process doesn't support multiple entry points, Orchestrator displays `Default` in the **Entry point** drop-down, and the field is disabled.
+7. If the package has input arguments, you can provide values for them in the arguments table. Edit the arguments by clicking **Edit** for the corresponding entry.
+8. Once you are done with the changes, click **Next**. The **Package Requirements** window is displayed.
+    The **Package Requirements** tab allows you to identify objects that have been used in the design of the underlying workflow and are required for successful job execution.
+    See [Managing package requirements](https://docs.uipath.com/orchestrator/automation-cloud/latest/user-guide/managing-package-requirements) for details on how to manage package requirements.
+9. Once you have handled the package requirements, click **Next**. The **Additional Settings** window is displayed.
+10. In the **Display Name** field, add the name to be displayed on all pages which mention, list, or monitor processes. If left empty, the name of the package is used instead.
+11. Type a **Description** for the process. We recommend adding a description, especially when there are many processes deployed to Orchestrator.
+12. In the **Tags** section, manage the process tags. You can see tags inherited from the underlying package, if any, and you can add new tags or remove existing ones, provided you have the necessary permissions. See [Organizing resources with tags](https://docs.uipath.com/orchestrator/automation-cloud/latest/user-guide/organizing-resources-with-tags) for details.
+13. In the **Retention policy** section, create a rule for when a job associated to this process is deleted. See [Process data retention policy](https://docs.uipath.com/orchestrator/automation-cloud/latest/user-guide/process-data-retention-policy) for details.
+14. From the **Job Priority** drop-down, select the execution priority of the process.
+
+</CloudFlavor>
+15. To receive suggestions and debugging information on how to fix issues that may arise during job execution, turn on the **Enable Healing Agent** toggle. Additionally, you can allow Healing Agent to independently fix job execution issues by selecting the **Enable Healing Agent self-healing** option. By default, the **Enable Healing Agent** option is enabled, while the Enable Healing Agent self-healing option is disabled. For detailed information on Healing Agent and its capabilities, refer to the [Healing Agent documentation](https://docs.uipath.com/agents/automation-cloud/latest/user-guide-ha/what-is-healing-agent).
+</CloudFlavor>
+
+16. Switch on the **Hide process for attended users** option if you want this process to be withheld from Assistant. When this is enabled, the Process can’t be stopped from UiPath Assistant option becomes inactive.
+    **Note:** This only works with Assistant and Robot versions 2023.10+.
+17. Switch on the **Process can’t be stopped from UiPath Assistant** option to restrict process termination from the UiPath Assistant.
+18. Switch on the **Automatically Start Process** option to set this process to launch automatically when the Robot agent starts.
+19. Switch on the **Job Recording** option so that, in the event of a job failure, the execution is recorded and available for [download](https://docs.uipath.com/orchestrator/automation-cloud/latest/user-guide/managing-jobs#downloading-execution-media) as execution media.
+    **Note:** If you do not see the **Enable Recording** option:
+    - You recently upgraded to Enterprise or Enterprise Trial licensing; please allow a few days for migration, after which the option becomes available.
+    - Make sure you have the Execution Media - View permission assigned to your account.
+
+    Configure the Scaling, Frequency, and Duration options as needed.
+    | Field            | Description       |
+    |------------------|-------------------|
+    | **Scaling**      | Enables you to set the scaling of the screenshots in percent. The maximum value is 100. By default, this field is set to 100.|
+    | **Frequency**    | Enables you to configure the time interval between screenshots, in milliseconds. The minimum value is 250. By default, this field is set to 500. |
+    | **Duration**     | Enables you to configure the length of time before failure to start the recording, in seconds. The maximum value is 120. By default, this field is set to 40. |
+
+20. (Optional, only available for cross-platform processes) If you want to run this process using [Cloud Robot - Serverless](https://docs.uipath.com/orchestrator/automation-cloud/latest/user-guide/automation-cloud-robots-serverless), select an option for the machine size to use:
+    | Option            | Details                                                                        | Robot unit (RU) consumption|
+    |-------------------|--------------------------------------------------------------------------------|--------------------------------------------|
+    | **Automatic**         |        Default setting. Selects the optimum machine size based on high-level process dependencies.| Depends on machine size|
+    | **Small**             |  1 GB (~0.5 CPUs)  For most unattended processes.                              | 1 RU / minute    |
+    | **Standard**          |  2 GB (~1 CPUs)  For unattended processes that use UI Automation.              | 2 RUs / minute   |
+    | **Medium**            |  4 GB (~2 CPUs) For slightly more complex unattended processes, such as remote debugging. | 4 RUs / minute |
+    | **&Large**             |  10 GB (~6 CPUs) For heavy processes, such as ones that include activities.    | 10 RUs / minute |
+
+    **Note:** If the selected machine size is too small, your process will time out without completing, but you still consume robot units for the duration that the machine was running.
+
+<CloudFlavor flavor="commercial">
+
+## Deploying agents
+
+<Note title="Permissions required">
+You need **View** permissions on *Packages* and **View** and **Create** permissions on *Processes* to create a process.
+</Note>
+
+1. Navigate to **Automations > Processes** in the folder where you want to deploy the process. The *Processes* window is displayed.
+2. Click **Add**. The **Add Process** window is displayed.
+3. Select a package from the **Package Source Name** drop-down. To display only agent-type packages, use the **Filter types** filter next to the drop-down and select **Agent**. You can also use the upload area to upload a new package. The latest version of the package is automatically selected.
+4. If the package version has tags that are not applied to the process, a **New tags have been found** notification window is displayed informing you about the number of tags. In the **New tags have been found** window, select **Add and continue** if you want to apply package tags to the process, or **Don't add** if you do not want to apply package tags to the process.
+5. From the **Package Version** drop‑down, select the version of the package that you want to use.
+6. To specify environment variables for coded agents, use the **Environment Configuration** text field.  
+   Coded agents are indicated as `(Agent ‑ <programming language>)` in the UI.
+   
+   You can specify secrets using one of two methods:
+   - **Direct assignment**  
+     ```text
+     SECRET=Abc@123 SECRET=Abc@123
+     ```
+     If the secret key ends with any of the following:
+     `ACCESS_KEY`, `API_KEY`, `AUTH`, `CREDENTIALS`, `PASSWORD`, `PRIVATE_KEY`, `SECRET`, `SESSION`, `TOKEN` — the value appears masked (asterisks) after editing. To update it, delete the asterisks and re-enter the value.
+   - **Asset reference**  
+     ```text
+     MySecret=%ASSETS/SECRET%MySecret=%ASSETS/SECRET%
+     ```
+     - Typing `=%` after the key triggers autocompletion with `ASSETS/…`.  
+     - You cannot reference secrets from external credential stores when using a disconnected credential proxy.
+7. If the package has input or output arguments, they are displayed under the **Runtime Arguments** section (tabs: *Input* and *Output*). Edit them as necessary.  
+   You can toggle between the arguments view and the underlying JSON schema by selecting **JSON schema**.
+8. Click **Next**. The *Package Requirements* page is displayed, showing all resources used in the workflow.
+   
+   <Note title="Mapping for agents">
+   Agents-related concepts map to package requirements as follows:
+
+   | Agents concept | Orchestrator package requirement |
+   |----------------|----------------------------------|
+   | Escalation     | App                              |
+   | Tool           | Connection or process            |
+   | Context        | Index                            |
+   </Note>
+
+9. Use **Overwrite** next to any resource to bind it to a specific folder. Supported types:
+   - App
+   - Bucket
+   - Business rule
+   - Index
+   - Process
+   - Queue  
+   For more details, see [Managing package requirements](#).
+10. Click **Next** to open the *Additional Settings* pane.
+11. Populate fields:
+    - **Display Name** – name displayed in all listings (defaults to package name if empty)
+    - **Description** – recommended for clarity when many processes are present
+    - **Tags** – inherited and new tags can be managed here
+    - **Retention policy** – configure rules for job data deletion or archival
+    - **Running Options** – **Enable Agent Memory** toggle allows the agent to retain learned info (disabling it and re‑enabling later restores previous memory)
+12. Click **Next** to advance to further settings or **Save/Finish** to deploy.
+
+
+## Deploying agentic processes
+
+**Note:** 
+  - You need **View** permissions on *Packages* and **View** and **Create** permissions on *Processes* to create a process.
+  - Before you deploy an agentic process to a folder, we recommend that you deploy all the dependencies for that process to the same folder.
+
+
+1. Navigate to **Automations > Processes** in the folder where you want to deploy the process. The Processes window is displayed.
+2. Click **Add** to open the **Add Process** window.
+3. Select a package from the **Package Source Name** dropdown or upload a new package. The latest version is selected automatically.
+4. If new tags are detected on the chosen version, a **New tags have been found** notification appears. Click **Add and continue** to apply them, or **Don't add** to skip tag addition.
+5. Choose the desired version in the **Package Version** dropdown.
+6. Under **Runtime Arguments**, if the package has input/output arguments:
+   - Select an **Entry point** from the dropdown (defaults to the main `.xaml` set in Studio).
+     > **Note:** For packages published before July 2020, Orchestrator may not auto-select an entry point—you must do so manually.
+   - Provide or edit values for input arguments by clicking **Edit** for each.
+   - Switch to the **JSON schema** view if needed to edit arguments in schema format.
+7. Click **Next** to display the *Package Requirements* window. This tab highlights all external resources your workflow uses.
+8. After managing requirements, click **Next** to open the *Additional Settings* window.
+9. Configure additional details:
+   - **Display Name** – the name shown in listings (defaults to package name).
+   - **Description** – useful for clarity in environments with many processes.
+   - **Tags** – review inherited tags, add or remove as needed.
+   - **Retention policy** – set rules for job data deletion or archiving.
+   - **Job Priority** – define execution priority.
+   - **Enable Healing Agent** – toggle for suggestions and debugging assistance; optional “self-healing” allows automated fixes.
+   - **Hide process for attended users** – makes process unavailable in UiPath Assistant.
+   - **Process can’t be stopped from UiPath Assistant** – restricts user from terminating process.
+   - **Automatically Start Process** – launches process when the Robot agent starts.
+   - **Job Recording** – enable execution recording; configure scaling (%), frequency (ms), duration (s).
+   - *(Optional for Cloud Robot – Serverless processes)* Select **machine size** (RU billing):  
+     - **Automatic** – optimal sizing based on dependencies  
+     - **Small** (1 GB/0.5 CPU – 1 RU/min)  
+     - **Standard** (2 GB/1 CPU – 2 RU/min)  
+     - **Medium** (4 GB/2 CPU – 4 RU/min)  
+     - **Large** (10 GB/6 CPU – 10 RU/min)  
+     > ⚠️ If the selected machine size is too small, process execution may time out while still consuming RUs.
+10. Click **Save/Finish** to deploy the agentic process.
+
+</CloudFlavor>
+
+
+# Editing process settings
+
+The display name, description, job priority, as well as the **Enable Recording**, **Automatically Start Process**, **Process can’t be stopped from UiPath Assistant** options can be modified after deploying a process on the *Process Settings* window.
+
+1. For the desired process, click **More Actions > Process Settings**. The *Process Settings* window is displayed.  
+2. Change the desired option, and click **Update** to save the changes.
+
+**Note:**
+  - By default, any process can be edited while having associated running or pending jobs. Please take into account the following:  
+  - Running jobs associated with a modified process use the initial version of the process.  
+  - Newly created jobs or new triggers of the same job use the new version.  
+  - Pending jobs associated with a modified process use the updated version.
+  - The **Process** filter on the **Automations** > Logs page searches for the latest name given to the process. Logs recorded under old process names cannot be filtered anymore.
+
+
+# Managing package versions
+
+**Note:** 
+  - When first publishing a package, the main entry point defined in Studio is also set as the current entry point in Orchestrator.
+  - Upon publishing a new package version, the current entry point is preserved as long as it exists in the new version; otherwise, it defaults to the main entry point defined in Studio.
+  - Switching to a package version that does not have the initial entry point will default to the main entry point defined in Studio. The current entry point is kept upon upgrading if it exists on the new version as well.
+  - Updating a process by uploading a package from an external feed is possible via the `/odata/Processes/UiPath.Server.Configuration.OData.SetArguments` endpoint. It is your responsibility to make sure the process arguments are the same as the arguments in the new package, as Orchestrator does not perform any validation on packages from external feeds.
+  - Managing package versions for a process requires **View** and **Edit** permissions on Processes, and **View** permissions on Packages/Folder Packages.
