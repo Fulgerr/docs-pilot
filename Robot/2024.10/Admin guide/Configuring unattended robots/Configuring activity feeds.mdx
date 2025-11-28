@@ -7,5 +7,3 @@ Open the NuGet.config file with a text editor, such as Notepad++.To add a new ac
     <add key="Online Feed" value="https://mycustomfeed.com" />
     <add key="Local Feed" value="C:\local feed" />
 </packageSources>You can add both local and online feeds.To ignore HTTPS feeds from NuGet.config, add the following line in UiPath.config, under <packageSettings>:<add key="skipHttpConfigurationSources" value="true" />To remove an activity feed, delete the corresponding <add/> tag.Save the NuGet.config file, then restart the Robot service or the device.
-
-acesta este featureul meu nou
