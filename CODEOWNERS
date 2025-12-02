@@ -1,7 +1,0 @@
-# CODEOWNERS file
-/Robot/        @AncaDoesCode
-/Studio/         @anlupsor
-/Data Service/     @danidox
-
-# Catch-all: set a default owner for anything not matched above
-/             @smandache
